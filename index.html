@@ -30,14 +30,14 @@
         var eventName = eventSelect.MPEventSelect('value'),
             propName  = propSelect.MPPropertySelect('value'),
             dateRange = dateSelect.MPDatepicker('value');
-        var from = dateRange['from'].valueOf();
-            to = dateRange['to'].valueOf();
+        var from = dateRange['from'].valueOf() / 1000;
+            to = dateRange['to'].valueOf() / 1000;
             diff = to - from;
             old = from - diff;
             oldFromDate = new Date(0);
             oldToDate = new Date(0);
-        oldFromDate.setUTCSeconds(old/1000);
-        oldToDate.setUTCSeconds((dateRange['from'] / 1000) - 86400);
+        oldFromDate.setUTCSeconds(old);
+        oldToDate.setUTCSeconds(from - 86400);
         var dateRangeOld = {};
         dateRangeOld['from'] = oldFromDate;
         dateRangeOld['to'] = oldToDate;

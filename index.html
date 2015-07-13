@@ -47,7 +47,7 @@
             eventGraph.MPChart('setData', results);
             eventTable.MPTable('setData', results);
           });
-          MP.api.segment(eventName, propName, dateRange).done(function(results) {
+          MP.api.segment(eventName, propName, dateRangeOld).done(function(results) {
             eventGraph.MPChart('setData', results);
             eventTable.MPTable('setData', results);
           });

@@ -43,18 +43,15 @@
         dateRangeOld['to'] = oldToDate;
         
         if (eventName) {
-
-          MP.api.segment(eventName, propName, dateRange).done(function(results) {
-            debugger;
-            eventGraph.MPChart('setData', results);
-            eventTable.MPTable('setData', results);
+        var results = {};
+          MP.api.segment(eventName, propName, dateRange).done(function(resultsNow) {
+            results['now'] = resultsNow.values()[eventName];
+            MP.api.segment(eventName, propName, dateRangeOld).done(function(resultsLast) {
+             results['old'] = resultsLast.values()[eventName];
+             eventGraph.MPChart('setData', results);
+            });
           });
-
-          MP.api.segment(eventName, propName, dateRangeOld).done(function(results) {
-            eventGraph.MPChart('setData', results);
-            eventTable.MPTable('setData', results);
-          });
-        }
+        };
       };
       eventSelect.on('change', function(e, eventName) {
         propSelect.MPPropertySelect('setEvent', eventName);

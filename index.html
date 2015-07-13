@@ -34,11 +34,13 @@
             to = dateRange['to'].valueOf();
             diff = to - from;
             old = from - diff;
-            oldDate = new Date(0);
-        oldDate.setUTCSeconds(old/1000);
+            oldFromDate = new Date(0);
+            oldToDate = new Date(0);
+        oldFromDate.setUTCSeconds(old/1000);
+        oldToDate.setUTCSeconds((dateRange['from'] - 86400) / 1000);
         var dateRangeOld = {};
-        dateRangeOld['from'] = oldDate;
-        dateRangeOld['to'] = dateRange['from'];
+        dateRangeOld['from'] = oldFromDate;
+        dateRangeOld['to'] = oldToDate;
         debugger;
         if (eventName) {
           MP.api.segment(eventName, propName, dateRange).done(function(results) {

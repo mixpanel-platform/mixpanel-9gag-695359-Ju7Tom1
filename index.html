@@ -19,7 +19,7 @@
     <script>
       function keyAdd(results, res, version) {
           for (x in res)
-           results[x + version] = res[x];
+           results[x + "(" + version + ")"] = res[x];
         }
       var eventSelect = $('#eventSelect').MPEventSelect();
       var propSelect  = $('#propSelect').MPPropertySelect();

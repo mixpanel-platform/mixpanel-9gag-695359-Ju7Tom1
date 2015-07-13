@@ -36,7 +36,7 @@
             old = from - diff;
             oldFromDate = new Date(0);
             oldToDate = new Date(0);
-        oldFromDate.setUTCSeconds(old);
+        oldFromDate.setUTCSeconds(old - 86400);
         oldToDate.setUTCSeconds(from - 86400);
         var dateRangeOld = {};
         dateRangeOld['from'] = oldFromDate;

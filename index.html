@@ -25,13 +25,24 @@
         showPercentages: true,
         firstColHeader: 'Event'
       });
-
+      
       var runQuery = function() {
         var eventName = eventSelect.MPEventSelect('value'),
             propName  = propSelect.MPPropertySelect('value'),
             dateRange = dateSelect.MPDatepicker('value');
-
+        var from = dateRange['from'].valueOf();
+            to = dateRange['to'].valueOf();
+            diff = to - from;
+            old = from - diff;
+            date = new Date(0);
+        date.setSeconds(old/1000);
+        var dateRangeOld = {};
+        debugger;
         if (eventName) {
+          MP.api.segment(eventName, propName, dateRange).done(function(results) {
+            eventGraph.MPChart('setData', results);
+            eventTable.MPTable('setData', results);
+          });
           MP.api.segment(eventName, propName, dateRange).done(function(results) {
             eventGraph.MPChart('setData', results);
             eventTable.MPTable('setData', results);

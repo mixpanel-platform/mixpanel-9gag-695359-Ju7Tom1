@@ -19,7 +19,7 @@
 	<script>
 	
 	function keyAdd(results, res, version) {
-		for (x in res)
+		for (var x in res)
 			results[x + "(" + version + ")"] = res[x];
 	}
 
@@ -97,7 +97,7 @@
 				MP.api.segment(eventName, propName, dateRangeOld).done(function(resultsLast) {
 					var obj = {};
 					var res = resultsLast.values();
-					for (x in res) {
+					for (var x in res) {
 						obj[x] = dateTransformer(res[x], dateList, dateListOld);
 					}
 					keyAdd(results, obj, "previous");
